@@ -1,5 +1,5 @@
 {
-  "name": "yolo93",
+  "name": "metro-remote-cache",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
