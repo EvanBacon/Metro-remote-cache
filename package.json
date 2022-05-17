@@ -2,11 +2,10 @@
   "name": "metro-remote-cache",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
+    "start:metro": "expo start",
+    "start:server": "cd metro-cache-endpoint && yarn dev",
+    "clean:remote": "rm -rf ./metro-cache-endpoint/.cache",
+    "fetch": "ts-node fetch-bundle"
   },
   "dependencies": {
     "expo": "~44.0.0",
