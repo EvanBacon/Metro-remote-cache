@@ -1,7 +1,6 @@
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
-import zlib from "zlib";
 
 // Emulate a storage bucket or somn
 const cachePath = path.join(__dirname, "../../../../../.cache");
@@ -22,11 +21,7 @@ export default async function handler(
     if (fs.existsSync(path.join(cachePath, sha))) {
       const buf = await fs.promises.readFile(path.join(cachePath, sha), "utf8");
       console.log("got:", sha);
-      // console.log("got:", sha, buf);
-
-      // return zlib stream
       res.status(200).end(buf);
-      // res.status(200).end(zlib.gzipSync(buf));
     } else {
       console.log("missing:", sha);
       res.status(404).end();
@@ -42,6 +37,7 @@ function getFirst<T>(param: undefined | T | T[]): T | undefined {
   }
   return param;
 }
+
 function getMethod(req: NextApiRequest): string {
   // @ts-ignore
   return req.method.toLowerCase();
