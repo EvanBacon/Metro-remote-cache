@@ -42,3 +42,11 @@ function getMethod(req: NextApiRequest): string {
   // @ts-ignore
   return req.method.toLowerCase();
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '1TB',
+    },
+  },
+}
