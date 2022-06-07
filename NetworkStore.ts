@@ -96,11 +96,14 @@ export class NetworkStore<T> {
     const sha = key.toString("hex");
     try {
       //   console.log("set", sha, value as any);
-      await fetch(this._url + "/" + sha, {
+      const response = await fetch(this._url + "/" + sha, {
         body: JSON.stringify(value),
         method: "PUT",
         compress: true,
       });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
     } catch (error) {
       console.log("set err:", sha, error, value);
     }
